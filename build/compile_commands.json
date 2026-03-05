@@ -1,0 +1,12 @@
+[
+{
+  "directory": "/home/piggylw/gitproject/ZephyrLog/build",
+  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++14 -o CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o -c /home/piggylw/gitproject/ZephyrLog/src/asynclogger.cpp",
+  "file": "/home/piggylw/gitproject/ZephyrLog/src/asynclogger.cpp"
+},
+{
+  "directory": "/home/piggylw/gitproject/ZephyrLog/build",
+  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++14 -o CMakeFiles/test.dir/examples/test.cpp.o -c /home/piggylw/gitproject/ZephyrLog/examples/test.cpp",
+  "file": "/home/piggylw/gitproject/ZephyrLog/examples/test.cpp"
+}
+]

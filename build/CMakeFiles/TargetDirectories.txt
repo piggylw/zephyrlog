@@ -1,0 +1,4 @@
+/home/piggylw/gitproject/ZephyrLog/build/CMakeFiles/asynclogger.dir
+/home/piggylw/gitproject/ZephyrLog/build/CMakeFiles/test.dir
+/home/piggylw/gitproject/ZephyrLog/build/CMakeFiles/edit_cache.dir
+/home/piggylw/gitproject/ZephyrLog/build/CMakeFiles/rebuild_cache.dir

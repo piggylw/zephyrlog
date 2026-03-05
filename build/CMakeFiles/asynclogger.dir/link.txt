@@ -1,0 +1,2 @@
+/usr/bin/ar qc libasynclogger.a CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o
+/usr/bin/ranlib libasynclogger.a
