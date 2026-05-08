@@ -6,5 +6,5 @@ CXX_DEFINES =
 
 CXX_INCLUDES = -I/home/piggylw/gitproject/ZephyrLog/include
 
-CXX_FLAGS = -Wall -Wextra -O2 -std=gnu++14
+CXX_FLAGS = -Wall -Wextra -O2 -std=gnu++17
 

@@ -4,7 +4,7 @@
 CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/ZephyrLog/src/asynclogger.cpp \
   /usr/include/stdc-predef.h \
   /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/asynclogger.h \
-  /usr/include/c++/12/cstdint \
+  /usr/include/c++/12/cstddef \
   /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h \
   /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h \
   /usr/include/features.h \
@@ -16,6 +16,9 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
   /usr/include/aarch64-linux-gnu/gnu/stubs.h \
   /usr/include/aarch64-linux-gnu/gnu/stubs-lp64.h \
   /usr/include/aarch64-linux-gnu/c++/12/bits/cpu_defines.h \
+  /usr/include/c++/12/pstl/pstl_config.h \
+  /usr/lib/gcc/aarch64-linux-gnu/12/include/stddef.h \
+  /usr/include/c++/12/cstdint \
   /usr/lib/gcc/aarch64-linux-gnu/12/include/stdint.h \
   /usr/include/stdint.h \
   /usr/include/aarch64-linux-gnu/bits/libc-header-start.h \
@@ -74,7 +77,6 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
   /usr/include/wchar.h \
   /usr/include/aarch64-linux-gnu/bits/floatn.h \
   /usr/include/aarch64-linux-gnu/bits/floatn-common.h \
-  /usr/lib/gcc/aarch64-linux-gnu/12/include/stddef.h \
   /usr/lib/gcc/aarch64-linux-gnu/12/include/stdarg.h \
   /usr/include/aarch64-linux-gnu/bits/types/wint_t.h \
   /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h \
@@ -130,6 +132,8 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
   /usr/include/c++/12/bits/atomic_base.h \
   /usr/include/c++/12/bits/atomic_lockfree_defines.h \
   /usr/include/c++/12/backward/auto_ptr.h \
+  /usr/include/c++/12/pstl/glue_memory_defs.h \
+  /usr/include/c++/12/pstl/execution_defs.h \
   /usr/include/c++/12/string \
   /usr/include/c++/12/bits/char_traits.h \
   /usr/include/c++/12/bits/localefwd.h \
@@ -144,6 +148,8 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
   /usr/include/c++/12/bits/range_access.h \
   /usr/include/c++/12/initializer_list \
   /usr/include/c++/12/bits/basic_string.h \
+  /usr/include/c++/12/string_view \
+  /usr/include/c++/12/bits/string_view.tcc \
   /usr/include/c++/12/ext/string_conversions.h \
   /usr/include/c++/12/cstdlib \
   /usr/include/stdlib.h \
@@ -183,6 +189,8 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
   /usr/include/c++/12/bits/algorithmfwd.h \
   /usr/include/c++/12/bits/stl_heap.h \
   /usr/include/c++/12/bits/uniform_int_dist.h \
+  /usr/include/c++/12/pstl/glue_algorithm_defs.h \
+  /usr/include/c++/12/atomic \
   /usr/include/c++/12/bits/chrono.h \
   /usr/include/c++/12/ratio \
   /usr/include/c++/12/limits \
@@ -231,8 +239,6 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/wctype.h:
 
-/usr/include/c++/12/bits/basic_ios.h:
-
 /usr/include/c++/12/bits/ios_base.h:
 
 /usr/include/c++/12/ios:
@@ -256,6 +262,8 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 /usr/include/c++/12/bits/stl_heap.h:
 
 /usr/include/c++/12/bits/algorithmfwd.h:
+
+/usr/include/c++/12/atomic:
 
 /usr/include/c++/12/bits/stl_algo.h:
 
@@ -301,13 +309,15 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/aarch64-linux-gnu/bits/waitflags.h:
 
-/usr/include/stdlib.h:
-
 /usr/include/aarch64-linux-gnu/sys/types.h:
 
 /usr/include/c++/12/cstdlib:
 
 /usr/include/c++/12/ext/string_conversions.h:
+
+/usr/include/stdlib.h:
+
+/usr/include/c++/12/bits/string_view.tcc:
 
 /usr/lib/linux/uapi/arm64/asm/errno.h:
 
@@ -323,11 +333,13 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/c++/12/bits/char_traits.h:
 
+/usr/include/c++/12/bits/basic_ios.h:
+
+/usr/include/c++/12/pstl/execution_defs.h:
+
 /usr/include/c++/12/bits/atomic_lockfree_defines.h:
 
-/usr/include/aarch64-linux-gnu/bits/select.h:
-
-/usr/include/aarch64-linux-gnu/bits/timesize.h:
+/usr/include/c++/12/bits/shared_ptr_atomic.h:
 
 /usr/include/c++/12/ext/alloc_traits.h:
 
@@ -337,13 +349,9 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/aarch64-linux-gnu/bits/pthreadtypes-arch.h:
 
-/usr/include/c++/12/bit:
-
 /usr/include/string.h:
 
 /usr/include/c++/12/bits/stl_uninitialized.h:
-
-/usr/include/c++/12/bits/new_allocator.h:
 
 /usr/include/aarch64-linux-gnu/bits/types/wint_t.h:
 
@@ -387,7 +395,21 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/c++/12/bits/stl_pair.h:
 
-/usr/include/c++/12/ext/numeric_traits.h:
+/usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
+
+/usr/include/c++/12/bits/align.h:
+
+/usr/include/c++/12/istream:
+
+/usr/include/c++/12/stdexcept:
+
+/usr/include/c++/12/string_view:
+
+/usr/include/c++/12/cctype:
+
+/usr/include/c++/12/bits/atomic_base.h:
+
+/usr/include/features-time64.h:
 
 /usr/include/c++/12/bits/ptr_traits.h:
 
@@ -406,18 +428,6 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 /usr/include/c++/12/memory:
 
 /usr/include/aarch64-linux-gnu/bits/atomic_wide_counter.h:
-
-/usr/include/c++/12/cwctype:
-
-/usr/include/aarch64-linux-gnu/c++/12/bits/c++locale.h:
-
-/usr/include/c++/12/bits/unique_ptr.h:
-
-/usr/include/c++/12/bits/basic_string.tcc:
-
-/usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h:
-
-/usr/include/c++/12/bits/nested_exception.h:
 
 /usr/include/aarch64-linux-gnu/c++/12/bits/ctype_base.h:
 
@@ -439,9 +449,15 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/aarch64-linux-gnu/bits/wchar.h:
 
-/usr/include/c++/12/cstdint:
+/usr/include/c++/12/bits/basic_string.tcc:
 
-/usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
+/usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h:
+
+/usr/include/c++/12/bits/nested_exception.h:
+
+/usr/include/c++/12/bits/new_allocator.h:
+
+/usr/include/c++/12/cstddef:
 
 /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/asynclogger.h:
 
@@ -456,6 +472,10 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 /usr/include/aarch64-linux-gnu/gnu/stubs-lp64.h:
 
 /usr/lib/gcc/aarch64-linux-gnu/12/include/stdint.h:
+
+/usr/include/aarch64-linux-gnu/bits/select.h:
+
+/usr/include/aarch64-linux-gnu/bits/timesize.h:
 
 /usr/include/c++/12/bits/uses_allocator.h:
 
@@ -485,19 +505,19 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/aarch64-linux-gnu/bits/wordsize.h:
 
+/usr/include/c++/12/ext/numeric_traits.h:
+
+/usr/include/c++/12/pstl/pstl_config.h:
+
 /usr/include/pthread.h:
 
-/usr/include/c++/12/istream:
-
-/usr/include/c++/12/stdexcept:
-
-/usr/include/c++/12/cctype:
-
-/usr/include/features-time64.h:
-
-/usr/include/c++/12/bits/atomic_base.h:
-
 /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h:
+
+/usr/include/c++/12/bits/stl_algobase.h:
+
+/usr/include/c++/12/cstdint:
+
+/usr/include/aarch64-linux-gnu/bits/types/struct_sched_param.h:
 
 /usr/include/c++/12/new:
 
@@ -515,11 +535,13 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/aarch64-linux-gnu/bits/stdint-uintn.h:
 
-/usr/include/c++/12/bits/stl_algobase.h:
+/usr/include/c++/12/bit:
 
-/usr/include/aarch64-linux-gnu/bits/types/struct_tm.h:
+/usr/include/c++/12/cwctype:
 
-/usr/include/c++/12/bits/align.h:
+/usr/include/aarch64-linux-gnu/c++/12/bits/c++locale.h:
+
+/usr/include/c++/12/bits/unique_ptr.h:
 
 /usr/include/c++/12/bits/ostream.tcc:
 
@@ -547,6 +569,8 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/c++/12/bits/shared_ptr_base.h:
 
+/usr/include/c++/12/pstl/glue_algorithm_defs.h:
+
 /usr/include/aarch64-linux-gnu/bits/types/struct_timeval.h:
 
 /usr/include/c++/12/initializer_list:
@@ -563,15 +587,17 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/c++/12/bits/postypes.h:
 
+/usr/include/c++/12/pstl/glue_memory_defs.h:
+
 /usr/include/c++/12/bits/stl_construct.h:
 
 /usr/include/aarch64-linux-gnu/bits/pthreadtypes.h:
 
 /usr/include/c++/12/cwchar:
 
-/usr/include/aarch64-linux-gnu/bits/types.h:
-
 /usr/include/aarch64-linux-gnu/bits/setjmp.h:
+
+/usr/include/aarch64-linux-gnu/bits/types.h:
 
 /usr/include/aarch64-linux-gnu/bits/struct_mutex.h:
 
@@ -621,9 +647,9 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 
 /usr/include/aarch64-linux-gnu/bits/types/struct_timespec.h:
 
-/usr/include/c++/12/bits/predefined_ops.h:
-
 /usr/include/c++/12/bits/functexcept.h:
+
+/usr/include/c++/12/bits/predefined_ops.h:
 
 /usr/include/c++/12/bits/invoke.h:
 
@@ -654,5 +680,3 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o: /home/piggylw/gitproject/Zephy
 /usr/include/aarch64-linux-gnu/sys/cdefs.h:
 
 /usr/include/c++/12/bits/exception_ptr.h:
-
-/usr/include/c++/12/bits/shared_ptr_atomic.h:

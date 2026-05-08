@@ -1,12 +1,32 @@
 [
 {
   "directory": "/home/piggylw/gitproject/ZephyrLog/build",
-  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++14 -o CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o -c /home/piggylw/gitproject/ZephyrLog/src/asynclogger.cpp",
+  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++17 -o CMakeFiles/zephyrlog.dir/src/zephyrlog.cpp.o -c /home/piggylw/gitproject/ZephyrLog/src/zephyrlog.cpp",
+  "file": "/home/piggylw/gitproject/ZephyrLog/src/zephyrlog.cpp"
+},
+{
+  "directory": "/home/piggylw/gitproject/ZephyrLog/build",
+  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++17 -o CMakeFiles/zephyrlog.dir/src/logline.cpp.o -c /home/piggylw/gitproject/ZephyrLog/src/logline.cpp",
+  "file": "/home/piggylw/gitproject/ZephyrLog/src/logline.cpp"
+},
+{
+  "directory": "/home/piggylw/gitproject/ZephyrLog/build",
+  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++17 -o CMakeFiles/zephyrlog.dir/src/asynclogger.cpp.o -c /home/piggylw/gitproject/ZephyrLog/src/asynclogger.cpp",
   "file": "/home/piggylw/gitproject/ZephyrLog/src/asynclogger.cpp"
 },
 {
   "directory": "/home/piggylw/gitproject/ZephyrLog/build",
-  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++14 -o CMakeFiles/test.dir/examples/test.cpp.o -c /home/piggylw/gitproject/ZephyrLog/examples/test.cpp",
+  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++17 -o CMakeFiles/zephyrlog.dir/src/ringbuffer.cpp.o -c /home/piggylw/gitproject/ZephyrLog/src/ringbuffer.cpp",
+  "file": "/home/piggylw/gitproject/ZephyrLog/src/ringbuffer.cpp"
+},
+{
+  "directory": "/home/piggylw/gitproject/ZephyrLog/build",
+  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++17 -o CMakeFiles/zephyrlog.dir/src/queuebuffer.cpp.o -c /home/piggylw/gitproject/ZephyrLog/src/queuebuffer.cpp",
+  "file": "/home/piggylw/gitproject/ZephyrLog/src/queuebuffer.cpp"
+},
+{
+  "directory": "/home/piggylw/gitproject/ZephyrLog/build",
+  "command": "/usr/bin/c++  -I/home/piggylw/gitproject/ZephyrLog/include -Wall -Wextra -O2 -std=gnu++17 -o CMakeFiles/test.dir/examples/test.cpp.o -c /home/piggylw/gitproject/ZephyrLog/examples/test.cpp",
   "file": "/home/piggylw/gitproject/ZephyrLog/examples/test.cpp"
 }
 ]

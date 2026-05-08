@@ -1,1 +1,1 @@
-/usr/bin/c++ CMakeFiles/test.dir/examples/test.cpp.o -o test  libasynclogger.a -lpthread 
+/usr/bin/c++ CMakeFiles/test.dir/examples/test.cpp.o -o test  libzephyrlog.a -lpthread 

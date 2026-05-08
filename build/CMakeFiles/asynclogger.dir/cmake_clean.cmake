@@ -1,6 +1,8 @@
 file(REMOVE_RECURSE
   "CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o"
   "CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o.d"
+  "CMakeFiles/asynclogger.dir/src/logline.cpp.o"
+  "CMakeFiles/asynclogger.dir/src/logline.cpp.o.d"
   "libasynclogger.a"
   "libasynclogger.pdb"
 )

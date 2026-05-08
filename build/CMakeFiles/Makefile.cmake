@@ -43,6 +43,6 @@ set(CMAKE_MAKEFILE_PRODUCTS
 
 # Dependency information for all targets:
 set(CMAKE_DEPEND_INFO_FILES
-  "CMakeFiles/asynclogger.dir/DependInfo.cmake"
+  "CMakeFiles/zephyrlog.dir/DependInfo.cmake"
   "CMakeFiles/test.dir/DependInfo.cmake"
   )

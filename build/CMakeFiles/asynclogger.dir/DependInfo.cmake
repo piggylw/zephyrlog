@@ -9,6 +9,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
   "/home/piggylw/gitproject/ZephyrLog/src/asynclogger.cpp" "CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o" "gcc" "CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o.d"
+  "/home/piggylw/gitproject/ZephyrLog/src/logline.cpp" "CMakeFiles/asynclogger.dir/src/logline.cpp.o" "gcc" "CMakeFiles/asynclogger.dir/src/logline.cpp.o.d"
   )
 
 # Targets to which this target links.

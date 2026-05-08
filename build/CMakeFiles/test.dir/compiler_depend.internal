@@ -4,8 +4,9 @@
 CMakeFiles/test.dir/examples/test.cpp.o
  /home/piggylw/gitproject/ZephyrLog/examples/test.cpp
  /usr/include/stdc-predef.h
- /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/asynclogger.h
- /usr/include/c++/12/cstdint
+ /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/zephyrlog.h
+ /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/logline.h
+ /usr/include/c++/12/cstddef
  /usr/include/aarch64-linux-gnu/c++/12/bits/c++config.h
  /usr/include/aarch64-linux-gnu/c++/12/bits/os_defines.h
  /usr/include/features.h
@@ -17,6 +18,9 @@ CMakeFiles/test.dir/examples/test.cpp.o
  /usr/include/aarch64-linux-gnu/gnu/stubs.h
  /usr/include/aarch64-linux-gnu/gnu/stubs-lp64.h
  /usr/include/aarch64-linux-gnu/c++/12/bits/cpu_defines.h
+ /usr/include/c++/12/pstl/pstl_config.h
+ /usr/lib/gcc/aarch64-linux-gnu/12/include/stddef.h
+ /usr/include/c++/12/cstdint
  /usr/lib/gcc/aarch64-linux-gnu/12/include/stdint.h
  /usr/include/stdint.h
  /usr/include/aarch64-linux-gnu/bits/libc-header-start.h
@@ -75,7 +79,6 @@ CMakeFiles/test.dir/examples/test.cpp.o
  /usr/include/wchar.h
  /usr/include/aarch64-linux-gnu/bits/floatn.h
  /usr/include/aarch64-linux-gnu/bits/floatn-common.h
- /usr/lib/gcc/aarch64-linux-gnu/12/include/stddef.h
  /usr/lib/gcc/aarch64-linux-gnu/12/include/stdarg.h
  /usr/include/aarch64-linux-gnu/bits/types/wint_t.h
  /usr/include/aarch64-linux-gnu/bits/types/mbstate_t.h
@@ -131,6 +134,8 @@ CMakeFiles/test.dir/examples/test.cpp.o
  /usr/include/c++/12/bits/atomic_base.h
  /usr/include/c++/12/bits/atomic_lockfree_defines.h
  /usr/include/c++/12/backward/auto_ptr.h
+ /usr/include/c++/12/pstl/glue_memory_defs.h
+ /usr/include/c++/12/pstl/execution_defs.h
  /usr/include/c++/12/string
  /usr/include/c++/12/bits/char_traits.h
  /usr/include/c++/12/bits/localefwd.h
@@ -145,6 +150,8 @@ CMakeFiles/test.dir/examples/test.cpp.o
  /usr/include/c++/12/bits/range_access.h
  /usr/include/c++/12/initializer_list
  /usr/include/c++/12/bits/basic_string.h
+ /usr/include/c++/12/string_view
+ /usr/include/c++/12/bits/string_view.tcc
  /usr/include/c++/12/ext/string_conversions.h
  /usr/include/c++/12/cstdlib
  /usr/include/stdlib.h
@@ -179,6 +186,11 @@ CMakeFiles/test.dir/examples/test.cpp.o
  /usr/include/aarch64-linux-gnu/bits/types/error_t.h
  /usr/include/c++/12/bits/charconv.h
  /usr/include/c++/12/bits/basic_string.tcc
+ /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/asynclogger.h
+ /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/bufferbase.h
+ /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/ringbuffer.h
+ /usr/include/c++/12/atomic
+ /home/piggylw/gitproject/ZephyrLog/include/zephyrlog/filewriter.h
  /usr/include/c++/12/iostream
  /usr/include/c++/12/ostream
  /usr/include/c++/12/ios
@@ -203,6 +215,11 @@ CMakeFiles/test.dir/examples/test.cpp.o
  /usr/include/c++/12/bits/ostream.tcc
  /usr/include/c++/12/istream
  /usr/include/c++/12/bits/istream.tcc
+ /usr/include/c++/12/fstream
+ /usr/include/c++/12/bits/codecvt.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/basic_file.h
+ /usr/include/aarch64-linux-gnu/c++/12/bits/c++io.h
+ /usr/include/c++/12/bits/fstream.tcc
  /usr/include/c++/12/thread
  /usr/include/c++/12/bits/std_thread.h
  /usr/include/c++/12/bits/this_thread_sleep.h
@@ -211,4 +228,21 @@ CMakeFiles/test.dir/examples/test.cpp.o
  /usr/include/c++/12/limits
  /usr/include/c++/12/ctime
  /usr/include/c++/12/bits/parse_numbers.h
+ /usr/include/c++/12/algorithm
+ /usr/include/c++/12/bits/stl_algo.h
+ /usr/include/c++/12/bits/algorithmfwd.h
+ /usr/include/c++/12/bits/stl_heap.h
+ /usr/include/c++/12/bits/uniform_int_dist.h
+ /usr/include/c++/12/pstl/glue_algorithm_defs.h
+ /usr/include/c++/12/chrono
+ /usr/include/dirent.h
+ /usr/include/aarch64-linux-gnu/bits/dirent.h
+ /usr/include/aarch64-linux-gnu/bits/posix1_lim.h
+ /usr/include/aarch64-linux-gnu/bits/local_lim.h
+ /usr/include/linux/limits.h
+ /usr/include/aarch64-linux-gnu/bits/dirent_ext.h
+ /usr/include/c++/12/vector
+ /usr/include/c++/12/bits/stl_vector.h
+ /usr/include/c++/12/bits/stl_bvector.h
+ /usr/include/c++/12/bits/vector.tcc
 

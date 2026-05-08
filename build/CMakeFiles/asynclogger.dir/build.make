@@ -83,17 +83,33 @@ CMakeFiles/asynclogger.dir/src/asynclogger.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/asynclogger.dir/src/asynclogger.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piggylw/gitproject/ZephyrLog/src/asynclogger.cpp -o CMakeFiles/asynclogger.dir/src/asynclogger.cpp.s
 
+CMakeFiles/asynclogger.dir/src/logline.cpp.o: CMakeFiles/asynclogger.dir/flags.make
+CMakeFiles/asynclogger.dir/src/logline.cpp.o: /home/piggylw/gitproject/ZephyrLog/src/logline.cpp
+CMakeFiles/asynclogger.dir/src/logline.cpp.o: CMakeFiles/asynclogger.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/piggylw/gitproject/ZephyrLog/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/asynclogger.dir/src/logline.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/asynclogger.dir/src/logline.cpp.o -MF CMakeFiles/asynclogger.dir/src/logline.cpp.o.d -o CMakeFiles/asynclogger.dir/src/logline.cpp.o -c /home/piggylw/gitproject/ZephyrLog/src/logline.cpp
+
+CMakeFiles/asynclogger.dir/src/logline.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/asynclogger.dir/src/logline.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/piggylw/gitproject/ZephyrLog/src/logline.cpp > CMakeFiles/asynclogger.dir/src/logline.cpp.i
+
+CMakeFiles/asynclogger.dir/src/logline.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/asynclogger.dir/src/logline.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/piggylw/gitproject/ZephyrLog/src/logline.cpp -o CMakeFiles/asynclogger.dir/src/logline.cpp.s
+
 # Object files for target asynclogger
 asynclogger_OBJECTS = \
-"CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o"
+"CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o" \
+"CMakeFiles/asynclogger.dir/src/logline.cpp.o"
 
 # External object files for target asynclogger
 asynclogger_EXTERNAL_OBJECTS =
 
 libasynclogger.a: CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o
+libasynclogger.a: CMakeFiles/asynclogger.dir/src/logline.cpp.o
 libasynclogger.a: CMakeFiles/asynclogger.dir/build.make
 libasynclogger.a: CMakeFiles/asynclogger.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/piggylw/gitproject/ZephyrLog/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Linking CXX static library libasynclogger.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/piggylw/gitproject/ZephyrLog/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX static library libasynclogger.a"
 	$(CMAKE_COMMAND) -P CMakeFiles/asynclogger.dir/cmake_clean_target.cmake
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/asynclogger.dir/link.txt --verbose=$(VERBOSE)
 

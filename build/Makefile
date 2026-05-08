@@ -117,17 +117,17 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named asynclogger
+# Target rules for targets named zephyrlog
 
 # Build rule for target.
-asynclogger: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 asynclogger
-.PHONY : asynclogger
+zephyrlog: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 zephyrlog
+.PHONY : zephyrlog
 
 # fast build rule for target.
-asynclogger/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/asynclogger.dir/build.make CMakeFiles/asynclogger.dir/build
-.PHONY : asynclogger/fast
+zephyrlog/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/build
+.PHONY : zephyrlog/fast
 
 #=============================================================================
 # Target rules for targets named test
@@ -171,7 +171,7 @@ src/asynclogger.o: src/asynclogger.cpp.o
 
 # target to build an object file
 src/asynclogger.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/asynclogger.dir/build.make CMakeFiles/asynclogger.dir/src/asynclogger.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/asynclogger.cpp.o
 .PHONY : src/asynclogger.cpp.o
 
 src/asynclogger.i: src/asynclogger.cpp.i
@@ -179,7 +179,7 @@ src/asynclogger.i: src/asynclogger.cpp.i
 
 # target to preprocess a source file
 src/asynclogger.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/asynclogger.dir/build.make CMakeFiles/asynclogger.dir/src/asynclogger.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/asynclogger.cpp.i
 .PHONY : src/asynclogger.cpp.i
 
 src/asynclogger.s: src/asynclogger.cpp.s
@@ -187,8 +187,104 @@ src/asynclogger.s: src/asynclogger.cpp.s
 
 # target to generate assembly for a file
 src/asynclogger.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/asynclogger.dir/build.make CMakeFiles/asynclogger.dir/src/asynclogger.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/asynclogger.cpp.s
 .PHONY : src/asynclogger.cpp.s
+
+src/logline.o: src/logline.cpp.o
+.PHONY : src/logline.o
+
+# target to build an object file
+src/logline.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/logline.cpp.o
+.PHONY : src/logline.cpp.o
+
+src/logline.i: src/logline.cpp.i
+.PHONY : src/logline.i
+
+# target to preprocess a source file
+src/logline.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/logline.cpp.i
+.PHONY : src/logline.cpp.i
+
+src/logline.s: src/logline.cpp.s
+.PHONY : src/logline.s
+
+# target to generate assembly for a file
+src/logline.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/logline.cpp.s
+.PHONY : src/logline.cpp.s
+
+src/queuebuffer.o: src/queuebuffer.cpp.o
+.PHONY : src/queuebuffer.o
+
+# target to build an object file
+src/queuebuffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/queuebuffer.cpp.o
+.PHONY : src/queuebuffer.cpp.o
+
+src/queuebuffer.i: src/queuebuffer.cpp.i
+.PHONY : src/queuebuffer.i
+
+# target to preprocess a source file
+src/queuebuffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/queuebuffer.cpp.i
+.PHONY : src/queuebuffer.cpp.i
+
+src/queuebuffer.s: src/queuebuffer.cpp.s
+.PHONY : src/queuebuffer.s
+
+# target to generate assembly for a file
+src/queuebuffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/queuebuffer.cpp.s
+.PHONY : src/queuebuffer.cpp.s
+
+src/ringbuffer.o: src/ringbuffer.cpp.o
+.PHONY : src/ringbuffer.o
+
+# target to build an object file
+src/ringbuffer.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/ringbuffer.cpp.o
+.PHONY : src/ringbuffer.cpp.o
+
+src/ringbuffer.i: src/ringbuffer.cpp.i
+.PHONY : src/ringbuffer.i
+
+# target to preprocess a source file
+src/ringbuffer.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/ringbuffer.cpp.i
+.PHONY : src/ringbuffer.cpp.i
+
+src/ringbuffer.s: src/ringbuffer.cpp.s
+.PHONY : src/ringbuffer.s
+
+# target to generate assembly for a file
+src/ringbuffer.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/ringbuffer.cpp.s
+.PHONY : src/ringbuffer.cpp.s
+
+src/zephyrlog.o: src/zephyrlog.cpp.o
+.PHONY : src/zephyrlog.o
+
+# target to build an object file
+src/zephyrlog.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/zephyrlog.cpp.o
+.PHONY : src/zephyrlog.cpp.o
+
+src/zephyrlog.i: src/zephyrlog.cpp.i
+.PHONY : src/zephyrlog.i
+
+# target to preprocess a source file
+src/zephyrlog.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/zephyrlog.cpp.i
+.PHONY : src/zephyrlog.cpp.i
+
+src/zephyrlog.s: src/zephyrlog.cpp.s
+.PHONY : src/zephyrlog.s
+
+# target to generate assembly for a file
+src/zephyrlog.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/zephyrlog.dir/build.make CMakeFiles/zephyrlog.dir/src/zephyrlog.cpp.s
+.PHONY : src/zephyrlog.cpp.s
 
 # Help Target
 help:
@@ -198,14 +294,26 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... asynclogger"
 	@echo "... test"
+	@echo "... zephyrlog"
 	@echo "... examples/test.o"
 	@echo "... examples/test.i"
 	@echo "... examples/test.s"
 	@echo "... src/asynclogger.o"
 	@echo "... src/asynclogger.i"
 	@echo "... src/asynclogger.s"
+	@echo "... src/logline.o"
+	@echo "... src/logline.i"
+	@echo "... src/logline.s"
+	@echo "... src/queuebuffer.o"
+	@echo "... src/queuebuffer.i"
+	@echo "... src/queuebuffer.s"
+	@echo "... src/ringbuffer.o"
+	@echo "... src/ringbuffer.i"
+	@echo "... src/ringbuffer.s"
+	@echo "... src/zephyrlog.o"
+	@echo "... src/zephyrlog.i"
+	@echo "... src/zephyrlog.s"
 .PHONY : help
 
 
