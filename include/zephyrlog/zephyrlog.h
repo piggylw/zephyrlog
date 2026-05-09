@@ -54,22 +54,22 @@ ZEPHYRLOG_EXPORT void removeLogger(const std::string& name);
 #define ZCRIT    zephyrlog::LogLevel::CRITICAL >= zephyrlog::getLogLevel() && LOG(zephyrlog::LogLevel::CRITICAL)
 
 // ========== Named-logger macros ==========
-#define ZLOG_DEBUG(logger) \
+#define ZD(logger) \
     zephyrlog::LogLevel::DEBUG >= (logger)->level() && \
     zephyrlog::LoggerRef{(logger)} == zephyrlog::LogLine(zephyrlog::LogLevel::DEBUG, __FILE__, __func__, __LINE__)
 
-#define ZLOG_INFO(logger) \
+#define ZI(logger) \
     zephyrlog::LogLevel::INFO >= (logger)->level() && \
     zephyrlog::LoggerRef{(logger)} == zephyrlog::LogLine(zephyrlog::LogLevel::INFO, __FILE__, __func__, __LINE__)
 
-#define ZLOG_WARN(logger) \
+#define ZW(logger) \
     zephyrlog::LogLevel::WARN >= (logger)->level() && \
     zephyrlog::LoggerRef{(logger)} == zephyrlog::LogLine(zephyrlog::LogLevel::WARN, __FILE__, __func__, __LINE__)
 
-#define ZLOG_ERROR(logger) \
+#define ZE(logger) \
     zephyrlog::LogLevel::ERROR >= (logger)->level() && \
     zephyrlog::LoggerRef{(logger)} == zephyrlog::LogLine(zephyrlog::LogLevel::ERROR, __FILE__, __func__, __LINE__)
 
-#define ZLOG_CRIT(logger) \
+#define ZC(logger) \
     zephyrlog::LogLevel::CRITICAL >= (logger)->level() && \
     zephyrlog::LoggerRef{(logger)} == zephyrlog::LogLine(zephyrlog::LogLevel::CRITICAL, __FILE__, __func__, __LINE__)

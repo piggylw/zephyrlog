@@ -24,7 +24,10 @@ int main()
 {
     using namespace zephyrlog;
 
-    setLogLevel(LogLevel::DEBUG);   // 默认级别是 INFO
+    // 初始化默认日志器（必须调用，否则日志被静默丢弃）
+    initializeQuick(4096, "./logs/", "app");
+
+    setLogLevel(LogLevel::DEBUG);
 
     ZDEBUG << "Debug message";
     ZINFO  << "Hello, ZephyrLog!";
@@ -37,7 +40,7 @@ int main()
 }
 ```
 
-即使不调用 `initializeQuick` / `initializeSafe`，`ZINFO` 等宏也会输出到 stdout。
+`initializeQuick` 或 `initializeSafe` 必须先调用一次，之后才能使用 `ZINFO` 等宏写入日志文件。
 
 ## 详细 API + 示例
 
@@ -104,11 +107,11 @@ zephyrlog::removeLogger("network");
 
 ```cpp
 auto lg = zephyrlog::getLogger("network");
-ZLOG_INFO(lg)  << "message";
-ZLOG_DEBUG(lg) << "debug";
-ZLOG_WARN(lg)  << "warn";
-ZLOG_ERROR(lg) << "error";
-ZLOG_CRIT(lg)  << "crit";
+ZI(lg)  << "message";
+ZD(lg) << "debug";
+ZW(lg)  << "warn";
+ZE(lg) << "error";
+ZC(lg)  << "crit";
 ```
 
 > 所有宏都会先检查对应日志器的级别，级别不满足时跳过 LogLine 构造，无编码开销。
