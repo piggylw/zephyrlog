@@ -13,11 +13,13 @@ class FileWriter
 public:
     FileWriter(const std::string& logDirectory,
         const std::string& logFileName,
-        uint32_t rollSize = 10 * 1024 * 1024)
+        uint32_t rollSize = 10 * 1024 * 1024,
+        bool terminalOutput = false)
         : m_fileNumber(0),
           m_bytesWritten(0),
           m_rollSize(rollSize),
-          m_name(logDirectory + logFileName)
+          m_name(logDirectory + logFileName),
+          m_terminalOutput(terminalOutput)
     {
         mkdir(logDirectory.c_str(), 0755);
         rollFile();
@@ -36,6 +38,9 @@ public:
     {
         if (!m_os || !m_os->is_open())
             return;
+
+        if (m_terminalOutput)
+            logline.stringify(std::cout);
 
         auto pos = m_os->tellp();
         logline.stringify(*m_os);
@@ -68,6 +73,7 @@ private:
     std::streamoff m_bytesWritten;
     uint32_t m_rollSize;
     std::string m_name;
+    bool m_terminalOutput;
     std::unique_ptr<std::ofstream> m_os;
 };
 

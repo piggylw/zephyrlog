@@ -23,13 +23,15 @@ namespace zephyrlog
 class AsyncLogger
 {
 public:
-    explicit AsyncLogger(uint32_t bufferSize, 
-                        const std::string& logDirectory, 
-                        const std::string& logFileName, 
-                        uint32_t rollSize = 10 * 1024 * 1024);
-    AsyncLogger(const std::string& logDirectory, 
-                const std::string& logFileName, 
-                uint32_t rollSize = 10 * 1024 * 1024);
+    explicit AsyncLogger(uint32_t bufferSize,
+                        const std::string& logDirectory,
+                        const std::string& logFileName,
+                        uint32_t rollSize = 10 * 1024 * 1024,
+                        bool terminalOutput = false);
+    AsyncLogger(const std::string& logDirectory,
+                const std::string& logFileName,
+                uint32_t rollSize = 10 * 1024 * 1024,
+                bool terminalOutput = false);
     ~AsyncLogger();
     void add(LogLine&& logline);
 

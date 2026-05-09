@@ -42,19 +42,21 @@ LogLevel getLogLevel()
 void initializeQuick(uint32_t bufferSize,
                      const std::string& logDirectory,
                      const std::string& logFileName,
-                     uint32_t rollSize)
+                     uint32_t rollSize,
+                     bool terminalOutput)
 {
     auto logger = std::make_shared<Logger>("default", bufferSize,
-                                           logDirectory, logFileName, rollSize);
+                                           logDirectory, logFileName, rollSize, terminalOutput);
     setDefaultLogger(std::move(logger));
 }
 
 void initializeSafe(const std::string& logDirectory,
                     const std::string& logFileName,
-                    uint32_t rollSize)
+                    uint32_t rollSize,
+                    bool terminalOutput)
 {
     auto logger = std::make_shared<Logger>("default",
-                                           logDirectory, logFileName, rollSize);
+                                           logDirectory, logFileName, rollSize, terminalOutput);
     setDefaultLogger(std::move(logger));
 }
 
@@ -72,10 +74,11 @@ std::shared_ptr<Logger> createLogger(const std::string& name,
                                      uint32_t bufferSize,
                                      const std::string& logDirectory,
                                      const std::string& logFileName,
-                                     uint32_t rollSize)
+                                     uint32_t rollSize,
+                                     bool terminalOutput)
 {
     auto logger = std::make_shared<Logger>(name, bufferSize,
-                                           logDirectory, logFileName, rollSize);
+                                           logDirectory, logFileName, rollSize, terminalOutput);
     std::unique_lock lock(g_registryMutex);
     g_registry[name] = logger;
     return logger;
@@ -84,10 +87,11 @@ std::shared_ptr<Logger> createLogger(const std::string& name,
 std::shared_ptr<Logger> createSafeLogger(const std::string& name,
                                          const std::string& logDirectory,
                                          const std::string& logFileName,
-                                         uint32_t rollSize)
+                                         uint32_t rollSize,
+                                         bool terminalOutput)
 {
     auto logger = std::make_shared<Logger>(name,
-                                           logDirectory, logFileName, rollSize);
+                                           logDirectory, logFileName, rollSize, terminalOutput);
     std::unique_lock lock(g_registryMutex);
     g_registry[name] = logger;
     return logger;

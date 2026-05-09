@@ -4,8 +4,8 @@ int main()
 {
     using namespace zephyrlog;
 
-    // 初始化默认日志器（Quick 模式，缓冲区 4096 条，滚动 10 MiB）
-    initializeQuick(4096, "./logs/", "app");
+    // 初始化默认日志器（Quick 模式，缓冲区 4096 条，滚动 10 MiB，同时输出到终端）
+    initializeQuick(4096, "./logs/", "app", 10 * 1024 * 1024, true);
 
     // 设置日志级别
     setLogLevel(LogLevel::DEBUG);

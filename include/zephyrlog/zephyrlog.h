@@ -21,21 +21,25 @@ ZEPHYRLOG_EXPORT LogLevel getLogLevel();
 ZEPHYRLOG_EXPORT void initializeQuick(uint32_t bufferSize,
                                        const std::string& logDirectory,
                                        const std::string& logFileName,
-                                       uint32_t rollSize = 10 * 1024 * 1024);
+                                       uint32_t rollSize = 10 * 1024 * 1024,
+                                       bool terminalOutput = false);
 ZEPHYRLOG_EXPORT void initializeSafe(const std::string& logDirectory,
                                       const std::string& logFileName,
-                                      uint32_t rollSize = 10 * 1024 * 1024);
+                                      uint32_t rollSize = 10 * 1024 * 1024,
+                                      bool terminalOutput = false);
 
 // ---- Named logger registry ----
 ZEPHYRLOG_EXPORT std::shared_ptr<Logger> createLogger(const std::string& name,
                                                        uint32_t bufferSize,
                                                        const std::string& logDirectory,
                                                        const std::string& logFileName,
-                                                       uint32_t rollSize = 10 * 1024 * 1024);
+                                                       uint32_t rollSize = 10 * 1024 * 1024,
+                                                       bool terminalOutput = false);
 ZEPHYRLOG_EXPORT std::shared_ptr<Logger> createSafeLogger(const std::string& name,
                                                            const std::string& logDirectory,
                                                            const std::string& logFileName,
-                                                           uint32_t rollSize = 10 * 1024 * 1024);
+                                                           uint32_t rollSize = 10 * 1024 * 1024,
+                                                           bool terminalOutput = false);
 ZEPHYRLOG_EXPORT std::shared_ptr<Logger> getLogger(const std::string& name);
 ZEPHYRLOG_EXPORT void setDefaultLogger(std::shared_ptr<Logger> logger);
 ZEPHYRLOG_EXPORT std::shared_ptr<Logger> getDefaultLogger();

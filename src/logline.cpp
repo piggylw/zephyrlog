@@ -13,7 +13,7 @@ namespace zephyrlog
 static uint64_t now()
 {
     return std::chrono::duration_cast<std::chrono::microseconds>(
-        std::chrono::high_resolution_clock::now().time_since_epoch()
+        std::chrono::system_clock::now().time_since_epoch()
     ).count();
 }
 
@@ -21,7 +21,7 @@ static void formatTimestamp(std::ostream& os, uint64_t timestamp)
 {
     std::time_t time_t = timestamp / 1000000;
     std::tm tm_buf;
-    gmtime_r(&time_t, &tm_buf);
+    localtime_r(&time_t, &tm_buf);
     char buffer[32];
     strftime(buffer, 32, "%Y-%m-%d %T.", &tm_buf);
     char microseconds[7];

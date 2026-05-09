@@ -9,6 +9,7 @@ C++17 高性能异步日志库，采用"先编码后格式化"（encode-first, f
 - **小缓冲区优化（SBO）** — 每条 LogLine 内置 224 字节栈缓冲，短日志零堆分配
 - **零开销过滤** — 日志级别检查发生在 LogLine 构造之前，被过滤的消息无任何编码成本
 - **文件滚动** — 按文件大小自动滚动，默认 10 MiB
+- **终端输出** — 可选同时输出到终端，方便开发调试
 - **多日志器** — 支持多个命名日志器，各自独立配置级别和输出文件
 - **线程安全** — MPSC 架构，SpinLock + 原子操作保证并发安全
 - **优雅关闭** — 析构时自动排空缓冲区中的剩余日志
@@ -25,7 +26,8 @@ int main()
     using namespace zephyrlog;
 
     // 初始化默认日志器（必须调用，否则日志被静默丢弃）
-    initializeQuick(4096, "./logs/", "app");
+    // 最后一个参数 true 表示同时输出到终端
+    initializeQuick(4096, "./logs/", "app", 10 * 1024 * 1024, true);
 
     setLogLevel(LogLevel::DEBUG);
 
@@ -64,14 +66,15 @@ auto lv = zephyrlog::getLogLevel();                   // 查询当前级别
 Quick 模式（固定环形缓冲区，写满覆盖旧数据，适合高频低延迟场景）：
 
 ```cpp
-zephyrlog::initializeQuick(4096, "./logs/", "app", 10 * 1024 * 1024);
-//                          ↑buf大小 ↑目录     ↑文件名 ↑滚动大小(默认10MiB)
+zephyrlog::initializeQuick(4096, "./logs/", "app", 10 * 1024 * 1024, true);
+//                          ↑buf大小 ↑目录     ↑文件名 ↑滚动大小(默认10MiB) ↑终端输出(默认false)
 ```
 
 Safe 模式（动态队列，绝不丢日志，适合可靠性要求高的场景）：
 
 ```cpp
-zephyrlog::initializeSafe("./logs/", "app", 10 * 1024 * 1024);
+zephyrlog::initializeSafe("./logs/", "app", 10 * 1024 * 1024, true);
+//                         ↑目录     ↑文件名 ↑滚动大小(默认10MiB) ↑终端输出(默认false)
 ```
 
 日志宏：
@@ -89,9 +92,9 @@ ZCRIT  << "crit"  << var;
 不同模块可使用独立的日志器，分别输出到不同文件、配置不同级别：
 
 ```cpp
-// 创建
-auto netLog = zephyrlog::createLogger("network", 4096, "./logs/", "net");
-auto dbLog  = zephyrlog::createSafeLogger("database", "./logs/", "db");
+// 创建（最后一个参数 true 表示同时输出到终端）
+auto netLog = zephyrlog::createLogger("network", 4096, "./logs/", "net", 10*1024*1024, true);
+auto dbLog  = zephyrlog::createSafeLogger("database", "./logs/", "db", 10*1024*1024, true);
 
 // 按名称获取
 auto lg = zephyrlog::getLogger("network");

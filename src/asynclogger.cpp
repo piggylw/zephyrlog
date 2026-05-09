@@ -11,23 +11,25 @@ namespace zephyrlog
 {
     
 AsyncLogger::AsyncLogger(uint32_t bufferSize,
-                        const std::string& logDirectory, 
-                        const std::string& logFileName, 
-                        uint32_t rollSize)
+                        const std::string& logDirectory,
+                        const std::string& logFileName,
+                        uint32_t rollSize,
+                        bool terminalOutput)
     : m_state(State::INIT),
       m_buffer(std::make_unique<RingBuffer>(bufferSize)),
-      m_writer(logDirectory, logFileName, rollSize),
+      m_writer(logDirectory, logFileName, rollSize, terminalOutput),
       m_thread(&AsyncLogger::pop, this)
 {
     m_state.store(State::READY, std::memory_order_release);
 }
 
-AsyncLogger::AsyncLogger(const std::string& logDirectory, 
-                        const std::string& logFileName, 
-                        uint32_t rollSize)
+AsyncLogger::AsyncLogger(const std::string& logDirectory,
+                        const std::string& logFileName,
+                        uint32_t rollSize,
+                        bool terminalOutput)
     : m_state(State::INIT),
       m_buffer(std::make_unique<QueueBuffer>()),
-      m_writer(logDirectory, logFileName, rollSize),
+      m_writer(logDirectory, logFileName, rollSize, terminalOutput),
       m_thread(&AsyncLogger::pop, this)
 {
     m_state.store(State::READY, std::memory_order_release);

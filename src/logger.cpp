@@ -7,17 +7,19 @@ namespace zephyrlog
 
 Logger::Logger(std::string name, uint32_t bufferSize,
                std::string logDir, std::string logFile,
-               uint32_t rollSize)
+               uint32_t rollSize,
+               bool terminalOutput)
     : m_name(std::move(name))
-    , m_impl(std::make_unique<AsyncLogger>(bufferSize, logDir, logFile, rollSize))
+    , m_impl(std::make_unique<AsyncLogger>(bufferSize, logDir, logFile, rollSize, terminalOutput))
 {
 }
 
 Logger::Logger(std::string name,
                std::string logDir, std::string logFile,
-               uint32_t rollSize)
+               uint32_t rollSize,
+               bool terminalOutput)
     : m_name(std::move(name))
-    , m_impl(std::make_unique<AsyncLogger>(logDir, logFile, rollSize))
+    , m_impl(std::make_unique<AsyncLogger>(logDir, logFile, rollSize, terminalOutput))
 {
 }
 
