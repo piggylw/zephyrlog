@@ -1,0 +1,6 @@
+@PACKAGE_INIT@
+
+include("${CMAKE_CURRENT_LIST_DIR}/ZephyrLogTargets.cmake")
+
+set(ZEPHYRLOG_INCLUDE_DIR "${CMAKE_CURRENT_LIST_DIR}/../../../include")
+find_package(Threads REQUIRED)

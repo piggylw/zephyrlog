@@ -1,5 +1,6 @@
 #pragma once
 
+#include "zephyrlog/export.h"
 #include <cstddef>
 #include <cstdint>
 #include <memory>
@@ -19,9 +20,9 @@ enum class LogLevel : uint8_t
     CRITICAL = 4
 };
 
-const char* toString(LogLevel level);
+ZEPHYRLOG_EXPORT const char* toString(LogLevel level);
 
-class LogLine
+class ZEPHYRLOG_EXPORT LogLine
 {
 public:
     LogLine(LogLevel level, const char* file, const char* function, uint32_t line);

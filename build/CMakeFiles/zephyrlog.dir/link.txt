@@ -1,2 +1,0 @@
-/usr/bin/ar qc libzephyrlog.a CMakeFiles/zephyrlog.dir/src/zephyrlog.cpp.o CMakeFiles/zephyrlog.dir/src/logline.cpp.o CMakeFiles/zephyrlog.dir/src/asynclogger.cpp.o CMakeFiles/zephyrlog.dir/src/ringbuffer.cpp.o CMakeFiles/zephyrlog.dir/src/queuebuffer.cpp.o
-/usr/bin/ranlib libzephyrlog.a

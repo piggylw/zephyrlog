@@ -20,11 +20,13 @@ static uint64_t now()
 static void formatTimestamp(std::ostream& os, uint64_t timestamp)
 {
     std::time_t time_t = timestamp / 1000000;
-    auto gmtime = std::gmtime(&time_t);
+    std::tm tm_buf;
+    gmtime_r(&time_t, &tm_buf);
     char buffer[32];
-    strftime(buffer, 32, "%Y-%m-%d %T.", gmtime);
+    strftime(buffer, 32, "%Y-%m-%d %T.", &tm_buf);
     char microseconds[7];
-    sprintf(microseconds, "%06llu", (unsigned long long)(timestamp % 1000000));
+    snprintf(microseconds, sizeof(microseconds), "%06llu",
+             (unsigned long long)(timestamp % 1000000));
     os << '[' << buffer << microseconds << ']';
 }
 

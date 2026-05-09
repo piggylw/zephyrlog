@@ -1,2 +1,0 @@
-[2026-05-08 15:19:53.675426][INFO ][140732195293824][/home/piggylw/gitproject/ZephyrLog/examples/test.cpp:testCritFlush:243] 普通日志（可能在缓冲区）
-[2026-05-08 15:19:53.675428][CRIT ][140732195293824][/home/piggylw/gitproject/ZephyrLog/examples/test.cpp:testCritFlush:244] 严重错误（立即刷新）
