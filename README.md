@@ -210,8 +210,9 @@ sdk/
 **命令行编译：**
 
 ```bash
-# 根据目标平台选择 -L 路径
-g++ -std=c++17 -Ipath/to/sdk/include -Lpath/to/sdk/lib/x86_64 main.cpp -lzephyrlog -lpthread
+# 根据目标平台选择 -L 路径，-Wl,-rpath 指定运行时 .so 搜索路径
+g++ -std=c++17 -Ipath/to/sdk/include -Lpath/to/sdk/lib/x86_64 main.cpp \
+    -lzephyrlog -lpthread -Wl,-rpath,path/to/sdk/lib/x86_64
 ```
 
 **CMake 引用：**
