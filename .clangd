@@ -1,3 +1,0 @@
-# 使用 compile_commands.json（根目录有指向 build/ 的符号链接）
-CompileFlags:
-  CompilationDatabase: .
