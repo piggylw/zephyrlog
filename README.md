@@ -222,7 +222,7 @@ set_target_properties(zephyrlog PROPERTIES
 target_link_libraries(myapp zephyrlog pthread)
 ```
 
-> 注意：预编译 `.so` 为 Linux ARM aarch64 架构，x86_64 平台需自行编译。
+> 注意：预编译 `.so` 为 Linux x86_64 架构，其他平台需自行编译。
 
 ## 与 spdlog 对比
 
