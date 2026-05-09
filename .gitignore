@@ -28,7 +28,7 @@ test2
 test3
 
 # Allow sdk/ binaries
-!sdk/*.so
+!sdk/lib/**/*.so
 
 # CMake generated
 CMakeCache.txt
