@@ -195,9 +195,38 @@ add_subdirectory(path/to/ZephyrLog)
 target_link_libraries(myapp zephyrlog)
 ```
 
+### 使用预编译 SDK（无需编译）
+
+仓库 `sdk/` 目录提供了预编译的 ARM aarch64 动态库和头文件，可直接使用：
+
+```
+sdk/
+├── include/zephyrlog/   # 所有头文件
+└── libzephyrlog.so      # ARM aarch64 动态库
+```
+
+**命令行编译：**
+
+```bash
+g++ -std=c++17 -Ipath/to/sdk/include -Lpath/to/sdk main.cpp -lzephyrlog -lpthread
+```
+
+**CMake 引用：**
+
+```cmake
+add_library(zephyrlog SHARED IMPORTED)
+set_target_properties(zephyrlog PROPERTIES
+    IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/path/to/sdk/libzephyrlog.so
+    INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/path/to/sdk/include
+)
+target_link_libraries(myapp zephyrlog pthread)
+```
+
+> 注意：预编译 `.so` 为 Linux ARM aarch64 架构，x86_64 平台需自行编译。
+
 ## 与 spdlog 对比
 
-平台：Linux arm64, GCC，双方均写入 `/dev/null`（排除磁盘 I/O），反映纯编码+格式化性能。
+平台：Linux aarch64, GCC，双方均写入 `/dev/null`（排除磁盘 I/O），反映纯编码+格式化性能。
 
 运行 `./build/benchmark` 可在本机复现。
 
