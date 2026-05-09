@@ -50,6 +50,10 @@ target_compile_definitions(zephyrlog PRIVATE ZEPHYRLOG_BUILD)
 if(ZEPHYRLOG_BUILD_EXAMPLES)
     add_executable(test examples/test.cpp)
     target_link_libraries(test zephyrlog pthread)
+
+    find_package(spdlog REQUIRED)
+    add_executable(benchmark examples/benchmark.cpp)
+    target_link_libraries(benchmark zephyrlog pthread spdlog::spdlog)
 endif()
 
 # ========== Install (SDK packaging) ==========

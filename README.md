@@ -2,18 +2,18 @@
 
 C++17 高性能异步日志库，采用"先编码后格式化"（encode-first, format-later）设计。
 
-## 特性
+## 整体介绍
 
-- **异步日志** — 日志写入在后台线程执行，用户线程仅负责编码，延迟极低
-- **双缓冲区模式**
-  - `Quick` 模式：固定大小环形缓冲区（RingBuffer），写满后覆盖旧数据，适合高频低延迟场景
-  - `Safe` 模式：动态队列缓冲区（QueueBuffer），保证不丢日志，适合可靠性要求高的场景
-- **小缓冲区优化（SBO）** — 每条 LogLine 内置 224 字节栈缓冲，短日志不触发堆分配
-- **文件滚动** — 按文件大小自动滚动（默认 10 MiB）
-- **多日志器** — 支持创建多个命名日志器，各自独立配置级别和输出文件
-- **线程安全** — 多生产者单消费者（MPSC）架构，SpinLock + 原子操作保证并发安全
-- **零开销过滤** — 日志级别检查在 LogLine 构造之前，被过滤的消息几乎无性能消耗
-- **优雅关闭** — 析构时自动排空缓冲区剩余日志
+- **异步架构** — 用户线程只负责将参数编码到 LogLine 的二进制缓冲区，后台线程串行读取并写入文件，用户线程延迟极低
+- **双缓冲区模式** — Quick（固定环形缓冲，写满覆盖）和 Safe（动态队列，永不丢日志）
+- **小缓冲区优化（SBO）** — 每条 LogLine 内置 224 字节栈缓冲，短日志零堆分配
+- **零开销过滤** — 日志级别检查发生在 LogLine 构造之前，被过滤的消息无任何编码成本
+- **文件滚动** — 按文件大小自动滚动，默认 10 MiB
+- **多日志器** — 支持多个命名日志器，各自独立配置级别和输出文件
+- **线程安全** — MPSC 架构，SpinLock + 原子操作保证并发安全
+- **优雅关闭** — 析构时自动排空缓冲区中的剩余日志
+
+输出格式：`[YYYY-MM-DD HH:MM:SS.微秒][LEVEL][thread-id][file:func:line] msg...`
 
 ## 快速开始
 
@@ -22,154 +22,96 @@ C++17 高性能异步日志库，采用"先编码后格式化"（encode-first, f
 
 int main()
 {
-    // 初始化默认日志器（Quick 模式：环形缓冲区 4096 条）
-    zephyrlog::initializeQuick(4096, "./logs/", "app", 10 * 1024 * 1024);
+    using namespace zephyrlog;
 
-    // 设置日志级别
-    zephyrlog::setLogLevel(zephyrlog::LogLevel::DEBUG);
+    setLogLevel(LogLevel::DEBUG);   // 默认级别是 INFO
 
-    ZINFO << "Hello, ZephyrLog!";
-    ZDEBUG << "Debug info: " << 42;
-    ZWARN << "Warning: value=" << 3.14;
+    ZDEBUG << "Debug message";
+    ZINFO  << "Hello, ZephyrLog!";
+    ZWARN  << "Warning: value=" << 3.14;
     ZERROR << "Something went wrong, code=" << 500;
-    ZCRIT << "Critical failure!";
+    ZCRIT  << "Critical failure!";
 
+    ZINFO << "Logging numbers: " << 42 << ", " << 3.14159;
     return 0;
 }
 ```
 
-输出格式：
-```
-[2025-03-15 10:30:45.123456][INFO ][140123456789][main.cpp:main:15] Hello, ZephyrLog!
-```
+即使不调用 `initializeQuick` / `initializeSafe`，`ZINFO` 等宏也会输出到 stdout。
 
-## 构建
-
-### 编译（默认：动态库 .so）
-
-```bash
-cmake -B build
-cmake --build build
-```
-
-生成 `build/libzephyrlog.so` + 头文件。
-
-### 编译静态库
-
-```bash
-cmake -B build -DBUILD_SHARED_LIBS=OFF
-cmake --build build
-```
-
-生成 `build/libzephyrlog.a`。
-
-> **推荐使用动态库**：ZephyrLog 内部有全局状态（logger 注册表、默认日志器）。如果多个 `.so` 各自静态链接 ZephyrLog，会各自持有一份独立的全局状态，导致日志器注册表不共享。动态库保证整个进程只有一份全局状态。
-
-### 运行示例
-
-```bash
-./build/test
-```
-
-### 安装为 SDK
-
-```bash
-cmake -B build -DCMAKE_INSTALL_PREFIX=/usr/local
-cmake --build build
-cmake --install build
-```
-
-安装后的文件结构：
-```
-/usr/local/
-├── include/zephyrlog/    # 头文件
-├── lib/libzephyrlog.so   # 动态库
-└── lib/cmake/ZephyrLog/  # CMake find_package 配置
-```
-
-其他项目通过 CMake 使用：
-
-```cmake
-find_package(ZephyrLog REQUIRED)
-target_link_libraries(myapp zephyrlog::zephyrlog)
-```
-
-也可以直接通过 `add_subdirectory` 引入：
-
-```cmake
-add_subdirectory(path/to/ZephyrLog)
-target_link_libraries(myapp zephyrlog)
-```
-
-## API 文档
+## 详细 API + 示例
 
 ### 日志级别
 
-| 级别 | 枚举值 | 说明 |
+| 级别 | 枚举值 | 行为 |
 |------|--------|------|
 | DEBUG | `LogLevel::DEBUG` | 调试信息 |
-| INFO | `LogLevel::INFO` | 一般信息 |
+| INFO | `LogLevel::INFO` | 一般信息（默认级别） |
 | WARN | `LogLevel::WARN` | 警告 |
 | ERROR | `LogLevel::ERROR` | 错误 |
-| CRITICAL | `LogLevel::CRITICAL` | 严重错误（强制 flush） |
-
-### 默认日志器 API
+| CRITICAL | `LogLevel::CRITICAL` | 严重错误，写入后立即 flush |
 
 ```cpp
-// 初始化（二选一）
-void initializeQuick(uint32_t bufferSize, const std::string& dir,
-                     const std::string& file, uint32_t rollSize = 10*1024*1024);
-void initializeSafe(const std::string& dir,
-                    const std::string& file, uint32_t rollSize = 10*1024*1024);
-
-// 日志级别
-void setLogLevel(LogLevel level);
-LogLevel getLogLevel();
+zephyrlog::setLogLevel(zephyrlog::LogLevel::INFO);   // 只显示 INFO 及以上
+auto lv = zephyrlog::getLogLevel();                   // 查询当前级别
 ```
 
-### 默认日志器宏
+### 默认日志器 — 初始化与宏
+
+Quick 模式（固定环形缓冲区，写满覆盖旧数据，适合高频低延迟场景）：
 
 ```cpp
-ZDEBUG << "msg" << value;   // 调试
-ZINFO  << "msg" << value;   // 信息
-ZWARN  << "msg" << value;   // 警告
-ZERROR << "msg" << value;   // 错误
-ZCRIT  << "msg" << value;   // 严重
+zephyrlog::initializeQuick(4096, "./logs/", "app", 10 * 1024 * 1024);
+//                          ↑buf大小 ↑目录     ↑文件名 ↑滚动大小(默认10MiB)
 ```
 
-### 多日志器 API
+Safe 模式（动态队列，绝不丢日志，适合可靠性要求高的场景）：
 
 ```cpp
-// 创建命名日志器
-auto log1 = zephyrlog::createLogger("module_a", 4096, "./logs/", "mod_a");
-auto log2 = zephyrlog::createSafeLogger("module_b", "./logs/", "mod_b");
+zephyrlog::initializeSafe("./logs/", "app", 10 * 1024 * 1024);
+```
+
+日志宏：
+
+```cpp
+ZDEBUG << "debug" << var;
+ZINFO  << "info"  << var;
+ZWARN  << "warn"  << var;
+ZERROR << "error" << var;
+ZCRIT  << "crit"  << var;
+```
+
+### 多日志器 — 创建、获取、切换
+
+不同模块可使用独立的日志器，分别输出到不同文件、配置不同级别：
+
+```cpp
+// 创建
+auto netLog = zephyrlog::createLogger("network", 4096, "./logs/", "net");
+auto dbLog  = zephyrlog::createSafeLogger("database", "./logs/", "db");
 
 // 按名称获取
-auto lg = zephyrlog::getLogger("module_a");
+auto lg = zephyrlog::getLogger("network");
 
-// 设置默认日志器
-zephyrlog::setDefaultLogger(log1);
+// 设置为默认日志器（影响 ZINFO 等宏的目标）
+zephyrlog::setDefaultLogger(netLog);
 
-// 获取默认日志器
-auto def = zephyrlog::getDefaultLogger();
-
-// 删除日志器
-zephyrlog::removeLogger("module_a");
+// 删除
+zephyrlog::removeLogger("network");
 ```
 
-### 多日志器宏
+多日志器宏（指定日志器，不依赖默认日志器）：
 
 ```cpp
-auto lg = zephyrlog::getLogger("module_a");
-
-ZLOG_DEBUG(lg) << "debug msg";   // 调试
-ZLOG_INFO(lg)  << "info msg";    // 信息
-ZLOG_WARN(lg)  << "warn msg";    // 警告
-ZLOG_ERROR(lg) << "error msg";   // 错误
-ZLOG_CRIT(lg)  << "crit msg";    // 严重
+auto lg = zephyrlog::getLogger("network");
+ZLOG_INFO(lg)  << "message";
+ZLOG_DEBUG(lg) << "debug";
+ZLOG_WARN(lg)  << "warn";
+ZLOG_ERROR(lg) << "error";
+ZLOG_CRIT(lg)  << "crit";
 ```
 
-> 注意：这些宏会先检查该日志器的级别，级别不满足时跳过 LogLine 构造，基本无开销。
+> 所有宏都会先检查对应日志器的级别，级别不满足时跳过 LogLine 构造，无编码开销。
 
 ### 支持的流操作类型
 
@@ -183,35 +125,96 @@ ZLOG_CRIT(lg)  << "crit msg";    // 严重
 | `const char[N]` | 字符串字面量（仅存指针，零拷贝） |
 | `std::string` | C++ 字符串 |
 
-## 两种缓冲区模式对比
+### 缓冲区模式对比
 
 | | Quick (RingBuffer) | Safe (QueueBuffer) |
 |---|---|---|
 | 缓冲区 | 固定大小环形缓冲 | 动态分配队列 |
 | 写满行为 | 覆盖旧数据 | 分配新 Buffer |
 | 内存上限 | 固定 | 动态增长 |
-| 适用场景 | 高频日志，可以容忍丢失 | 必须保留所有日志 |
 | 吞吐量 | 更高 | 略低 |
+| 适用场景 | 高频日志，可容忍丢失 | 必须保留所有日志 |
 
-## 项目结构
+## 编译使用
 
+### 编译动态库（默认）
+
+```bash
+cmake -B build
+cmake --build build
+# → build/libzephyrlog.so
 ```
-ZephyrLog/
-├── include/zephyrlog/
-│   ├── zephyrlog.h        # 公共 API、宏定义
-│   ├── logger.h           # Logger 类、LoggerRef
-│   ├── logline.h          # LogLine 编码核心
-│   ├── asynclogger.h      # AsyncLogger（后台线程 + Buffer + FileWriter）
-│   ├── bufferbase.h       # 缓冲区抽象接口
-│   ├── ringbuffer.h       # 环形缓冲区（MPSC，固定大小）
-│   ├── queuebuffer.h      # 队列缓冲区（动态分配，保证交付）
-│   ├── filewriter.h       # 文件写入器（支持滚动）
-│   └── spinlock.h         # RAII 自旋锁
-├── src/                   # 实现文件
-├── examples/
-│   └── test.cpp           # 集成测试程序
-└── cmake/                 # CMake 打包配置
+
+### 编译静态库
+
+```bash
+cmake -B build -DBUILD_SHARED_LIBS=OFF
+cmake --build build
+# → build/libzephyrlog.a
 ```
+
+> 推荐使用动态库：ZephyrLog 内部有全局状态（logger 注册表、默认日志器）。多个 `.so` 各自静态链接会导致各自持有一份独立的全局状态，动态库保证进程内只有一份。
+
+### 运行示例
+
+```bash
+./build/test       # 基本使用演示
+./build/benchmark  # 与 spdlog 性能对比
+```
+
+### 作为 SDK 安装
+
+```bash
+cmake -B build -DCMAKE_INSTALL_PREFIX=/usr/local
+cmake --build build
+cmake --install build
+```
+
+安装后结构：
+```
+/usr/local/
+├── include/zephyrlog/   # 头文件
+├── lib/libzephyrlog.so  # 动态库
+└── lib/cmake/ZephyrLog/ # find_package 配置
+```
+
+其他项目通过 CMake 引用：
+
+```cmake
+find_package(ZephyrLog REQUIRED)
+target_link_libraries(myapp zephyrlog::zephyrlog)
+```
+
+或直接 `add_subdirectory`：
+
+```cmake
+add_subdirectory(path/to/ZephyrLog)
+target_link_libraries(myapp zephyrlog)
+```
+
+## 与 spdlog 对比
+
+平台：Linux arm64, GCC，双方均写入 `/dev/null`（排除磁盘 I/O），反映纯编码+格式化性能。
+
+运行 `./build/benchmark` 可在本机复现。
+
+### 单线程 — 500,000 条日志
+
+| 库 | 耗时 | 吞吐量 |
+|---|---|---|
+| **ZephyrLog** | 90 ms | 5,550,190 logs/s |
+| spdlog | 189 ms | 2,650,481 logs/s |
+
+ZephyrLog 约为 spdlog 的 **2.1x**。
+
+### 多线程 — 4 线程 × 100,000 条日志
+
+| 库 | 耗时 | 吞吐量 |
+|---|---|---|
+| **ZephyrLog** | 135 ms | 2,968,173 logs/s |
+| spdlog | 205 ms | 1,955,225 logs/s |
+
+ZephyrLog 约为 spdlog 的 **1.5x**。
 
 ## 许可证
 
