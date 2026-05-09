@@ -197,18 +197,21 @@ target_link_libraries(myapp zephyrlog)
 
 ### 使用预编译 SDK（无需编译）
 
-仓库 `sdk/` 目录提供了预编译的 ARM aarch64 动态库和头文件，可直接使用：
+仓库 `sdk/` 目录提供了预编译的动态库和头文件，可直接使用：
 
 ```
 sdk/
-├── include/zephyrlog/   # 所有头文件
-└── libzephyrlog.so      # ARM aarch64 动态库
+├── include/zephyrlog/      # 所有头文件
+└── lib/
+    ├── aarch64/libzephyrlog.so   # ARM aarch64
+    └── x86_64/libzephyrlog.so    # x86_64
 ```
 
 **命令行编译：**
 
 ```bash
-g++ -std=c++17 -Ipath/to/sdk/include -Lpath/to/sdk main.cpp -lzephyrlog -lpthread
+# 根据目标平台选择 -L 路径
+g++ -std=c++17 -Ipath/to/sdk/include -Lpath/to/sdk/lib/x86_64 main.cpp -lzephyrlog -lpthread
 ```
 
 **CMake 引用：**
@@ -216,13 +219,13 @@ g++ -std=c++17 -Ipath/to/sdk/include -Lpath/to/sdk main.cpp -lzephyrlog -lpthrea
 ```cmake
 add_library(zephyrlog SHARED IMPORTED)
 set_target_properties(zephyrlog PROPERTIES
-    IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/path/to/sdk/libzephyrlog.so
+    IMPORTED_LOCATION ${CMAKE_SOURCE_DIR}/path/to/sdk/lib/x86_64/libzephyrlog.so
     INTERFACE_INCLUDE_DIRECTORIES ${CMAKE_SOURCE_DIR}/path/to/sdk/include
 )
 target_link_libraries(myapp zephyrlog pthread)
 ```
 
-> 注意：预编译 `.so` 为 Linux x86_64 架构，其他平台需自行编译。
+> 根据目标平台选择 `aarch64` 或 `x86_64` 目录。
 
 ## 与 spdlog 对比
 
